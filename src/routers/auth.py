@@ -28,7 +28,7 @@ bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ALGORITHM = os.environ.get('ALGORITHM')
 
-templates = Jinja2Templates(directory="src/templates")
+templates = Jinja2Templates(directory="templates")
 
 ### Pages ###
 @router.get('/login-page', response_class=HTMLResponse)

@@ -16,7 +16,7 @@ router = APIRouter(
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
-templates = Jinja2Templates(directory='src/templates')
+templates = Jinja2Templates(directory='templates')
 
 def redirect_to_login():
     # redirect 是一种 response

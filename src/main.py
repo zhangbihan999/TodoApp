@@ -7,7 +7,7 @@ from .database import engine, Base
 app = FastAPI()
 
 # 把 /static 路径与 src/static 目录相绑定，使得用户可以通过访问 /static 路径来访问静态文件
-app.mount("/static", StaticFiles(directory="src/static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # 在指定数据库中创建 models.py 中定义的数据表
 Base.metadata.create_all(bind=engine)
