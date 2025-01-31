@@ -11,9 +11,6 @@
         "dest": "src/main.py"
       }
     ],
-    "install": {
-        "command": "pip install --disable-pip-version-check --target . --upgrade -r requirements.txt"
-    },
     "env": {
         "PIP_CACHE_DIR": "/tmp/pip-cache"
     }
