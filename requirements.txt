@@ -1,4 +1,3 @@
-alembic @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_be2aa9e2k2/croot/alembic_1729532427781/work
 annotated-types @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_1fa2djihwb/croot/annotated-types_1709542925772/work
 anyio @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_68kdsx8iyd/croot/anyio_1729121281958/work
 argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
