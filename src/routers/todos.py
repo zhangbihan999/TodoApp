@@ -7,6 +7,7 @@ from ..models import Todos
 from .auth import get_current_user
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
+from ..utils import redirect_to_login
 
 router = APIRouter(
     prefix="/todos",
@@ -17,13 +18,6 @@ db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
 templates = Jinja2Templates(directory='templates')
-
-def redirect_to_login():
-    # redirect 是一种 response
-    redirect_response = RedirectResponse(url='/auth/login-page', status_code=status.HTTP_302_FOUND)
-    # RedirectResponse 还能附着着 delete_cookie
-    redirect_response.delete_cookie(key='access_token')
-    return redirect_response
 
 ### Pages ###
 @router.get('/todo-page', response_class=HTMLResponse)

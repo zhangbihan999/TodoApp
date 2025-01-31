@@ -26,7 +26,7 @@
                 });
 
                 if (response.ok) {
-                    form.reset(); // Clear the form
+                    window.location.href = '/todos/todo-page';
                 } else {
                     // Handle error
                     const errorData = await response.json();
@@ -183,8 +183,6 @@
             const payload = {
                 email: data.email,
                 username: data.username,
-                first_name: data.firstname,
-                last_name: data.lastname,
                 role: data.role,
                 phone_number: data.phone_number,
                 password: data.password

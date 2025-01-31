@@ -11,8 +11,6 @@ class TodoRequest(BaseModel):
 class CreateUserRequest(BaseModel):
     username: str
     email: str
-    first_name: str
-    last_name: str
     password: str
     role: str
     phone_number: str
@@ -20,3 +18,11 @@ class CreateUserRequest(BaseModel):
 class UserVerification(BaseModel):
     password: str
     new_password: str = Field(min_length=3)
+
+class BasicInfoRequest(BaseModel):
+    email: str
+    username: str
+    first_name: str
+    last_name: str
+    role: str
+    phone_number: str

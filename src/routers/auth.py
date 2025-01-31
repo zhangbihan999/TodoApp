@@ -49,18 +49,19 @@ async def find_user(db: db_dependency, user_id: int = Path(gt=0)):
 
 @router.post('/create-user', status_code=status.HTTP_201_CREATED)
 async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
-    user_model = Users(
-        username = create_user_request.username,
-        email = create_user_request.email,
-        first_name = create_user_request.first_name,
-        last_name = create_user_request.last_name,
-        hashed_password = bcrypt_context.hash(create_user_request.password),
-        role = create_user_request.role,
-        phone_number = create_user_request.phone_number
-    )
+    try:
+        user_model = Users(
+            username = create_user_request.username,
+            email = create_user_request.email,
+            hashed_password = bcrypt_context.hash(create_user_request.password),
+            role = create_user_request.role,
+            phone_number = create_user_request.phone_number
+        )
 
-    db.add(user_model)
-    db.commit()
+        db.add(user_model)
+        db.commit()
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 @router.delete('/delete-user/{user_id}', status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user(db: db_dependency, user_id: int = Path(gt=0)):
@@ -87,8 +88,8 @@ def create_access_token(username: str, user_id: int, role: str, expires_delta: t
 async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: db_dependency):
     user = authenticate_user(form_data.username, form_data.password, db)
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
-    token = create_access_token(user.username, user.id, user.role, timedelta(minutes=20))
+        raise HTTPException(status_code=401, detail="用户名或密码不正确！")
+    token = create_access_token(user.username, user.id, user.role, timedelta(minutes=60))
     return {"access_token": token, "type": "bearer"}
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):

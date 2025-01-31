@@ -13,6 +13,7 @@ __pycache__/
 
 # 忽略 Alembic 生成的文件
 alembic/
+alembic.ini
 
 # 忽略 VS Code 配置文件
 .vscode/
